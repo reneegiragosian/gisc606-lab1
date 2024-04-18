@@ -1,1 +1,59 @@
+import os 
+import numpy as np
 
+import earthpy as ep
+
+
+
+# Define variable for URL to .txt with avg monthly precip data
+monthly_precip_url = 'https://ndownloader.figshare.com/files/12565616'
+
+# Provide variable as parameter value for `url`
+et.data.get_data(url=monthly_precip_url)
+
+Downloading from https://ndownloader.figshare.com/files/12565616
+
+'/root/earth-analytics/data/earthpy-downloads/avg-monthly-precip.txt'
+
+!ls~
+
+# Download data from URL to .txt with month names
+month_names_url = 'https://ndownloader.figshare.com/files/12565619'
+et.data.get_data(url=month_names_url)
+
+Downloading from https://ndownloader.figshare.com/files/12565619
+
+'/root/earth-analytics/data/earthpy-downloads/months.txt'
+
+# Set working directory to earth-analytics
+os.chdir(os.path.join(et.io.HOME, 'earth-analytics'))
+
+# Define path to file using os.path.join
+fname = os.path.join("data", "earthpy-downloads",
+                     "avg-monthly-precip.txt")
+
+# Import average monthly precip to numpy array
+avg_monthly_precip = np.loadtxt(fname)
+
+print(avg_monthly_precip)
+
+# Check type
+type(avg_monthly_precip)
+
+# Import monthly precip for 2002 and 2013 to numpy array
+fname = os.path.join("data", "earthpy-downloads",
+                     "monthly-precip-2002-2013.csv")
+precip_2002_2013 = np.loadtxt(fname, delimiter=",")
+
+# Check type
+type(precip_2002_2013)
+
+print(precip_2002_2013)
+
+# Import month names
+fname = os.path.join("data", "earthpy-downloads", "months.txt")
+months = np.genfromtxt(fname, dtype='str')
+
+type(months)
+
+print(months)
